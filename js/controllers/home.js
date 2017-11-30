@@ -1,6 +1,10 @@
 'use strict';
 
+<<<<<<< HEAD
+/**
+=======
 /** 
+>>>>>>> origin/master
  * @ngdoc function
  * @name friluftsframjandetApp.controller:controller.dashboard
  * @author yianni.ververis@qlik.com
@@ -8,12 +12,28 @@
  * # controller.dashboard
  * Controller of the myApp
  */
+<<<<<<< HEAD
+console.log('home.js');
+
+=======
+>>>>>>> origin/master
 app.obj.angularApp
 	.controller('controller.home', function ($scope, $rootScope, $location, $injector, api, utility) {
 		var me = {};
 
 		me.init = function () {
 			me.measures = [
+<<<<<<< HEAD
+			//	["Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )", false]
+			];
+			$scope.kapi = [];
+			//me.objects = ['ycppXj'];
+		}
+
+		me.boot = function () {
+			me.init();
+
+=======
 				["Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )", false]
 			];
 			$scope.kapi = [];
@@ -23,6 +43,7 @@ app.obj.angularApp
 		me.boot = function () {
 			me.init();
 			
+>>>>>>> origin/master
 			me.events();
 
 			me.createKpis();
@@ -58,3 +79,7 @@ app.obj.angularApp
 
 		me.boot();
 	});
+<<<<<<< HEAD
+	console.log('home.js done');
+=======
+>>>>>>> origin/master

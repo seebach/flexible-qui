@@ -4,8 +4,13 @@
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+<<<<<<< HEAD
+//ga('create', 'UA-XXXXXXXX-XX', 'auto');
+//ga('send', 'pageview');
+=======
 ga('create', 'UA-XXXXXXXX-XX', 'auto');
 ga('send', 'pageview');
+>>>>>>> origin/master
 
 // QLIK GA
 var _gaq = _gaq || [];
@@ -28,4 +33,8 @@ pageTracker._trackPageview();
 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+<<<<<<< HEAD
 })();
+=======
+})();
+>>>>>>> origin/master
