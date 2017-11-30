@@ -24,7 +24,7 @@ me.init = function () {
 	};
 	me.vars = {};
 }
-<<<<<<< HEAD
+
 me.initRemote = function () {
 	me.config = {
 		host: 'qs.itellidemo.dk',
@@ -38,11 +38,6 @@ me.initRemote = function () {
 me.boot = function () {
 //	me.init();
 	me.initRemote();
-=======
-
-me.boot = function () {
-	me.init();
->>>>>>> origin/master
 	me.obj.app = me.obj.qlik.openApp(me.config.id, me.config);
 	console.log('%c App ' + me.v + ': ', 'color: red', 'Loaded!');
 };

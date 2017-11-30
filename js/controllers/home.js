@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * @ngdoc function
  * @name friluftsframjandetApp.controller:controller.dashboard
@@ -7,26 +8,16 @@
  * # controller.dashboard
  * Controller of the myApp
  */
-console.log('home.js');
-
 app.obj.angularApp
 	.controller('controller.home', function ($scope, $rootScope, $location, $injector, api, utility) {
 		var me = {};
 
 		me.init = function () {
-			me.measures = [
+			me.measures = [];
 			//	["Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )", false]
-			];
-			$scope.kapi = [];
-			//me.objects = ['ycppXj'];
-		}
 
-		me.boot = function () {
-			me.init();
-				//["Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )", false]
-			];
-			$scope.kapi = [];
-			me.objects = ['ycppXj'];
+			//$scope.kapi = [];
+			//me.objects = ['ycppXj'];
 		}
 
 		me.boot = function () {
@@ -67,4 +58,3 @@ app.obj.angularApp
 
 		me.boot();
 	});
-	console.log('home.js done');

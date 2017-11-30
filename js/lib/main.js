@@ -45,8 +45,8 @@ define([
 				templateUrl: scriptsUrl+"views/home.html",
 				controller: 'controller.home'
 			} ).when('/new', {
-                templateUrl: scriptsUrl+"views/new.html",
-                controller: 'controller.home'
+          templateUrl: scriptsUrl+"views/new.html",
+          controller: 'controller.home'
             } )
 			.otherwise({redirectTo: '/'})
 	})
@@ -68,7 +68,7 @@ define([
     	app.obj.qlik = qlik;
 		qlik.setOnError( function ( error ) {
 			if (!angular.isUndefined(error) && error.code == 16) {
-			//	location.reload();
+			//	location.reload(); // crazy to reload if errors occuor!
 			} else {
 				console.log(error);
 			}
