@@ -2,11 +2,8 @@
  * @owner yianni.ververis@qlik.com
  *
  */
-<<<<<<< HEAD
  console.log('app.js');
 
-=======
->>>>>>> origin/master
 var me = {
 	v: '1.0.7',
 	obj: {
@@ -51,7 +48,3 @@ me.boot = function () {
 };
 
 app = me;
-<<<<<<< HEAD
-console.log('app.js done');
-=======
->>>>>>> origin/master
