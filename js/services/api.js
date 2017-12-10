@@ -13,6 +13,7 @@ app.obj.angularApp
 	var me = this;
 
 	me.getObjects = function (obj) {
+		console.log('getObjects');
 		var deferred = $q.defer(),
 			promises = [];
 
@@ -28,7 +29,27 @@ app.obj.angularApp
 		return $q.all(promises);
 	};
 
+	me.getSheet = function (id) {
+		console.log('getSheet');
+		var deferred = $q.defer(),
+			promises = [];
+
+		setTimeout(function(){
+			// app.getObject(sheetGuid).then(function(model) {
+				app.obj.app.getObject(id).then(function(model){
+					//console.log(model);
+					app.obj.model.push(model);
+					//app.obj.model.push(model);
+					deferred.resolve(value);
+				});
+				promises.push(deferred.promise);
+		}, 500);
+		return $q.all(promises);
+	};
+
+
 	me.destroyObjects = function () {
+		console.log('destroyObjects');
 		var deferred = $q.defer();
 		var promises = [];
 		if (app.obj.model.length >= 1) {
@@ -58,6 +79,7 @@ app.obj.angularApp
 	};
 	// To get generic Hypercubes
 	me.getHyperCube = function (dimensions, measures, callback, limit) {
+		console.log('getHyperCube');				
 		var qDimensions = [],
 			qMeasures = [];
 		if (dimensions.length) {

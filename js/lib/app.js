@@ -39,6 +39,11 @@ me.boot = function () {
 //	me.init();
 	me.initRemote();
 	me.obj.app = me.obj.qlik.openApp(me.config.id, me.config);
+
+  me.obj.app.getObjectProperties('eb466c8a-90f5-4ce6-aa6e-b31f87f71ca9').then(function(model){
+  	console.log(model.properties.title);
+  });
+
 	console.log('%c App ' + me.v + ': ', 'color: red', 'Loaded!');
 };
 

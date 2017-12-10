@@ -9,7 +9,7 @@
  * Controller of the myApp
  */
 app.obj.angularApp
-	.controller('controller.home', function ($scope, $rootScope, $location, $injector, api, utility) {
+	.controller('controller.main', function ($scope, $rootScope, $location, $injector, api, utility) {
 		var me = {};
 
 		me.init = function () {

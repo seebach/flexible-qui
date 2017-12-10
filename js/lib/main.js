@@ -16,8 +16,9 @@ baseUrl: "http://qs.itellidemo.dk/resources",
 	'bootstrap': scriptsUrl + 'js/vendor/bootstrap/dist/js/bootstrap.min',
 	'app': scriptsUrl + 'js/lib/app',
 //	'ga': scriptsUrl + 'js/lib/ga',
-    'controller.home': scriptsUrl + 'js/controllers/home',
+    'controller.main': scriptsUrl + 'js/controllers/main',
     'directive.getObject': scriptsUrl + 'js/directives/getObject',
+    'directive.getSheet': scriptsUrl + 'js/directives/getSheet',
     'directive.dropDown': scriptsUrl + 'js/directives/dropDown',
     'directive.exportToCsv': scriptsUrl + 'js/directives/exportToCsv',
     'directive.visualization': scriptsUrl + 'js/directives/visualization',
@@ -43,11 +44,14 @@ define([
 		$routeProvider
 			.when('/', {
 				templateUrl: scriptsUrl+"views/home.html",
-				controller: 'controller.home'
+				controller: 'controller.main'
 			} ).when('/new', {
           templateUrl: scriptsUrl+"views/new.html",
-          controller: 'controller.home'
-            } )
+          controller: 'controller.main'
+      } ).when('/sheet', {
+          templateUrl: scriptsUrl+"views/sheet.html",
+          controller: 'controller.main'
+      } )
 			.otherwise({redirectTo: '/'})
 	})
     require([
@@ -55,14 +59,15 @@ define([
     	'js/qlik',
     	'angular',
 //        'ga',
-    	'controller.home',
+    	'controller.main',
     	'service.api',
     	'service.utility',
-        'directive.getObject',
+      'directive.getObject',
+      'directive.getSheet',
     	'directive.dropDown',
     	'directive.exportToCsv',
-        'directive.visualization',
-        'directive.googleAnnotationChart',
+      'directive.visualization',
+      'directive.googleAnnotationChart',
     	'bootstrap',
     ], function (document, qlik) {
     	app.obj.qlik = qlik;
