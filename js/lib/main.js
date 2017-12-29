@@ -9,7 +9,7 @@ console.log('main.js');
 */
 require.config({
 //  baseUrl: "http://localhost:4848/resources",
-baseUrl: "http://qs.itellidemo.dk/resources",
+baseUrl: "https://qs.itellidemo.dk/resources",
 
   paths: {
   	'domReady': scriptsUrl +'js/vendor/domReady/domReady',

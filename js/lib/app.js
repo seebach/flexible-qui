@@ -29,7 +29,7 @@ me.initRemote = function () {
 	me.config = {
 		host: 'qs.itellidemo.dk',
 		prefix: "/",
-		port: 80, // 443 for Sense Server
+		port: 443, // 443 for Sense Server
 		id: '1d130b61-aee2-4529-ba59-e312527a3486'
 	};
 	me.vars = {};
