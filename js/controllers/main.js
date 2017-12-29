@@ -28,6 +28,17 @@ app.obj.angularApp
 			me.createKpis();
 			// me.getObjects();
 
+			$scope.tabData   = [
+	      {
+	        heading: '<i>Settings</i>',
+	        route:   'page.settings'
+	      },
+	      {
+	        heading: '<i>Accounts</i>',
+	        route:   'page.accounts'
+	      }
+	    ];
+
 			// For debugging selections uncommment the line below
 			app.obj.app.getObject('CurrentSelections', 'CurrentSelections');
 			utility.log('Page loaded: ', $scope.page);
