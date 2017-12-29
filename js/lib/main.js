@@ -1,5 +1,5 @@
 //var scriptsUrl = 'http://localhost:4848/extensions/angularTemplate/';
-var scriptsUrl = 'http://localhost:8080/';
+var scriptsUrl = 'https://localhost:8080/';
 
 console.log('main.js');
 
