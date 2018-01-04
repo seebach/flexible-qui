@@ -10,12 +10,10 @@ console.log('main.js');
 require.config({
 //  baseUrl: "http://localhost:4848/resources",
 baseUrl: "https://qs.itellidemo.dk/resources",
+
   paths: {
   	'domReady': scriptsUrl +'js/vendor/domReady/domReady',
-	'bootstrap': scriptsUrl + 'js/vendor/angular-sanitize/angular-sanitize.min',
-  'bootstrap': scriptsUrl + 'js/vendor/bootstrap/dist/js/bootstrap.min',
-  'bootstrap': scriptsUrl + 'js/vendor/angular-ui-router-tabs/ui-router-tabs',
-//  'bootstrap': scriptsUrl + 'js/vendor/angular-ui-router-tabs/angular-ui-router',
+	'bootstrap': scriptsUrl + 'js/vendor/bootstrap/dist/js/bootstrap.min',
 	'app': scriptsUrl + 'js/lib/app',
 //	'ga': scriptsUrl + 'js/lib/ga',
     'controller.main': scriptsUrl + 'js/controllers/main',
@@ -41,25 +39,10 @@ define([
 	app.obj.angularApp = angular.module('myApp', [
 		'ngAnimate',
 		'ngRoute',
-//    'ui.router',
-//    'ui.bootstrap',
-    'ui.router.tabs'
 	]);
 	app.obj.angularApp.config(function($routeProvider,$locationProvider) {
-/*
-    $routeProvider.state('user', {
-      url:         '',
-      controller: 'ExampleCtrl',
-      templateUrl: 'example.html'
-    }).state('user.accounts', {
-      url:         '/user/accounts',
-      templateUrl: 'user/accounts.html'
-    }).state('user.settings', {
-      url:         '/user/settings',
-      controller: 'SettingsCtrl',
-      templateUrl: 'user/settings/settings.html'
-    }); */
-    $routeProvider.when('/', {
+		$routeProvider
+			.when('/', {
 				templateUrl: scriptsUrl+"views/home.html",
 				controller: 'controller.main'
 			} ).when('/new', {
