@@ -15,6 +15,7 @@ baseUrl: "https://qs.itellidemo.dk/resources",
   	'domReady': scriptsUrl +'js/vendor/domReady/domReady',
 	'bootstrap': scriptsUrl + 'js/vendor/bootstrap/dist/js/bootstrap.min',
 	'app': scriptsUrl + 'js/lib/app',
+  'route-segment': scriptsUrl + 'js/vendor/angular-route-segment/angular-route-segment.min',
 //	'ga': scriptsUrl + 'js/lib/ga',
     'controller.main': scriptsUrl + 'js/controllers/main',
     'directive.getObject': scriptsUrl + 'js/directives/getObject',
@@ -31,7 +32,8 @@ baseUrl: "https://qs.itellidemo.dk/resources",
 define([
     'require',
     'angular',
-    'app'
+    'app',
+    'route-segment'
 ], function (require, angular) {
     'use strict';
 
@@ -39,6 +41,8 @@ define([
 	app.obj.angularApp = angular.module('myApp', [
 		'ngAnimate',
 		'ngRoute',
+    'route-segment',
+    'view-segment'
 	]);
 	app.obj.angularApp.config(function($routeProvider,$locationProvider) {
 		$routeProvider
@@ -58,6 +62,7 @@ define([
     	'domReady!',
     	'js/qlik',
     	'angular',
+      'route-segment',
 //        'ga',
     	'controller.main',
     	'service.api',
