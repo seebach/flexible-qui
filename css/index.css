@@ -2,7 +2,7 @@ html,
 body {
   overflow-y: auto;
   touch-action: auto;
-  font-family: 'Source Sans Pro', sans-serif;
+/*  font-family: 'Source Sans Pro', sans-serif; */
   font-style: normal;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -18,7 +18,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Source Sans Pro', sans-serif;
+/*  font-family: 'Source Sans Pro', sans-serif; */
   color: #666666;
   font-weight: bold;
   display: inline-block;
@@ -56,10 +56,10 @@ div.qvobject.fifty {
   padding-bottom: 0 !important;
 }
 /*************
- * HEADER 
+ * HEADER
 **************/
 /*************
- * QLIK 
+ * QLIK
 **************/
 .qlik,
 .qlik a,
@@ -67,7 +67,7 @@ div.qvobject.fifty {
   color: #65a604 !important;
 }
 /*************
- * BOOTSTRAP 
+ * BOOTSTRAP
 **************/
 .container {
   max-width: 950px;
@@ -103,8 +103,8 @@ div.qvobject.fifty {
 .container .row .dropdown-menu .active a:focus,
 .container .row .dropdown-menu li:hover,
 .container .row .dropdown-menu li a:hover {
-  color: white;
-  background-color: #77b62a;
+/*  color: white;
+  background-color: #77b62a; */
 }
 .container .row .scrollable-menu {
   height: auto;
@@ -113,7 +113,7 @@ div.qvobject.fifty {
   max-height: 200px;
 }
 /*************
- * ANGULAR 
+ * ANGULAR
 **************/
 [ng\:cloak],
 [ng-cloak],

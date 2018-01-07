@@ -25,15 +25,19 @@ app.obj.angularApp
 
 
 			me.def.link = function (scope, element, attrs) {
-        var values = {name: 'misko', gender: 'male'};
 
         var menuitems = [
-  		    {name:'Home',link:'/home'},
-  		    {name:'Sheet',link:'/sheet'},
-  		    {name:'New',link:'/new'}
+  		    {name:'Home',link:'home',submenu:'no'},
+  		    {name:'Sheet',link:'sheet',
+            submenu:
+            [{name:'1',link:'1'},
+            {name:'2',link:'2'}]
+        },
+  		    {name:'New',link:'new',submenu:'no'}
   		  ];
 
         var html = '';
+/*
         html += '<div class="tab">';
 
         menuitems.forEach(function(value, key) {
@@ -42,6 +46,31 @@ app.obj.angularApp
         });
         //var html = '<li role="menuitem" ng-repeat="item in menuitems"><a href="#">{{item}}</a></li>';
         html += '</div>';
+*/
+        html += '<ul class="nav nav-tabs">';
+
+        menuitems.forEach(function(value, key) {
+          if (value['submenu']==='no') {
+            html += '<li class="nav-item" ng-class="{active: $routeSegment.startsWith(\''+value['link']+'\')}" ><a href="#/'+value['link']+'" class"nav-link" role="tab">'+value['name']+'</a></li>';
+          } else {
+            html += '<li class="nav-item dropdown">';
+              html += '<a class="dropdown-toggle nav-link" data-toggle="dropdown" role="tab" href="#/'+value['link']+'">'+value['name']+' <span class="caret"></span></a>';
+              html += '<ul class="dropdown-menu">';
+                value['submenu'].forEach(function(subvalue, subkey) {
+                  html += '<li ><a href="#/'+value['link']+'/'+subvalue['link']+'" class="dropdown-item nav-link">'+subvalue['name']+'</a></li>';
+                });
+              html += '</ul>';
+            html += '</li>';          }
+
+          // class="active"
+
+        //  <li><a href="#">Menu 2</a></li>
+        //  <li><a href="#">Menu 3</a></li>
+        });
+
+        html += '</ul>';
+
+
 
         element.html(html);
 
