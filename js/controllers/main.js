@@ -16,6 +16,7 @@ app.obj.angularApp
 			me.measures = [];
 			//	["Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )", false]
 
+
 			//$scope.kapi = [];
 			//me.objects = ['ycppXj'];
 		}

@@ -15,14 +15,18 @@ baseUrl: "https://qs.itellidemo.dk/resources",
   	'domReady': scriptsUrl +'js/vendor/domReady/domReady',
 	'bootstrap': scriptsUrl + 'js/vendor/bootstrap/dist/js/bootstrap.min',
 	'app': scriptsUrl + 'js/lib/app',
+  'route-segment': scriptsUrl + 'js/vendor/angular-route-segment/angular-route-segment.min',
+  'ui-bootstrap': scriptsUrl + 'js/vendor/ui-bootstrap/ui-bootstrap-tpls-2.5.0.min',
 //	'ga': scriptsUrl + 'js/lib/ga',
     'controller.main': scriptsUrl + 'js/controllers/main',
     'directive.getObject': scriptsUrl + 'js/directives/getObject',
+    'directive.getMenu': scriptsUrl + 'js/directives/getMenu',
     'directive.getSheet': scriptsUrl + 'js/directives/getSheet',
     'directive.dropDown': scriptsUrl + 'js/directives/dropDown',
     'directive.exportToCsv': scriptsUrl + 'js/directives/exportToCsv',
     'directive.visualization': scriptsUrl + 'js/directives/visualization',
     'directive.googleAnnotationChart': scriptsUrl + 'js/directives/googleAnnotationChart',
+    'directive.view-segment': scriptsUrl + 'js/directives/view-segment',
 	'service.api': scriptsUrl + 'js/services/api',
 	'service.utility': scriptsUrl + 'js/services/utilities'
   }
@@ -31,7 +35,8 @@ baseUrl: "https://qs.itellidemo.dk/resources",
 define([
     'require',
     'angular',
-    'app'
+    'app',
+    'route-segment'
 ], function (require, angular) {
     'use strict';
 
@@ -39,7 +44,32 @@ define([
 	app.obj.angularApp = angular.module('myApp', [
 		'ngAnimate',
 		'ngRoute',
+    'route-segment',
+    'view-segment'
 	]);
+/* route segment info >> https://github.com/artch/angular-route-segment  */
+  app.obj.angularApp.config(function ($routeSegmentProvider) {
+    $routeSegmentProvider.
+			when('/',       'default').
+      when('/new',    'new').
+      when('/sheet',  'sheet' ).
+      when('/home',  'home' ).
+      segment('default', {
+        default: true,
+        templateUrl: scriptsUrl+"views/home.html",
+        controller: 'controller.main'} ).
+      segment('new', {
+        templateUrl: scriptsUrl+"views/new.html",
+        controller: 'controller.main'} ).
+        segment('sheet', {
+          templateUrl: scriptsUrl+"views/sheet.html",
+          controller: 'controller.main'} ).
+       segment('home', {
+        templateUrl: scriptsUrl+"views/home.html",
+        controller: 'controller.main'} )
+		//  	.otherwise({redirectTo: '/'})
+	})
+/*
 	app.obj.angularApp.config(function($routeProvider,$locationProvider) {
 		$routeProvider
 			.when('/', {
@@ -53,16 +83,20 @@ define([
           controller: 'controller.main'
       } )
 			.otherwise({redirectTo: '/'})
-	})
+	})*/
     require([
     	'domReady!',
     	'js/qlik',
     	'angular',
+      'route-segment',
+      'ui-bootstrap',
+      'directive.view-segment',
 //        'ga',
     	'controller.main',
     	'service.api',
     	'service.utility',
       'directive.getObject',
+      'directive.getMenu',
       'directive.getSheet',
     	'directive.dropDown',
     	'directive.exportToCsv',
@@ -78,6 +112,8 @@ define([
 				console.log(error);
 			}
 		} );
+
+
 
         angular.bootstrap( document, ["myApp", "qlik-angular"] );
 
