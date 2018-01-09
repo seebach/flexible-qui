@@ -33,6 +33,7 @@ app.obj.angularApp
                     qText: scope.title
                 };
                 scope.$watch('dimension', function(newValue, oldValue) {
+                  console.log('new '+newValue);
                     scope.fontSize = (scope.fontSize) ? scope.fontSize : '14';
                     me.def.cssTemplate(scope);
                     api.getHyperCubeQ([newValue], []).then(function(data) {
@@ -45,7 +46,7 @@ app.obj.angularApp
                     scope.currentItem = obj;
                 }
             };
-            
+
             me.def.template = '\n\
                 <div class="btn-group" id="{{id}}">\n\
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">\n\
@@ -55,8 +56,8 @@ app.obj.angularApp
                         <li ng-repeat="item in items"><a ng-click="dropDownChangeTitle(item[0])" ng-class="(currentItem.qElemNumber==item[0].qElemNumber)?\'active\':\'\'">{{item[0].qText}}</a></li>\n\
                     </ul>\n\
                 </div>';
-            
-            
+
+
             me.def.cssTemplate = function (obj) {
                 var css = '\n\
                     <style type="text/css">\n\

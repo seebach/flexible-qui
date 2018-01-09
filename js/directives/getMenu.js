@@ -4,6 +4,10 @@
  * @ngdoc function
  * @name myApp.directive: visualization
  * @description
+
+ *
+ *@Todo
+ * Mark an menu items as active on reload
  */
  console.log('getMenu');
 
@@ -28,12 +32,18 @@ app.obj.angularApp
 
         var menuitems = [
   		    {name:'Home',link:'home',submenu:'no'},
-  		    {name:'Sheet',link:'sheet',
+  		    {name:'Opportunity',link:'sheet',
             submenu:
-            [{name:'1',link:'1'},
-            {name:'2',link:'2'}]
+            [
+            {name:'Dashboard',link:'FfQzt'},
+            {name:'Trend',link:'dWbmmp'},
+            {name:'Pipeline',link:'600e9c8f-1f6e-4c4d-864b-9179fd2ef206'},
+
+            {name:'Propability',link:'793828b2-5355-4627-ab79-921e0adcaa14'},
+            {name:'Details',link:'sjUEcN'}
+          ]
         },
-  		    {name:'New',link:'new',submenu:'no'}
+  		    {name:'Value of Deals',link:'value-of-deals',submenu:'no'}
   		  ];
 
         var html = '';
@@ -60,7 +70,8 @@ app.obj.angularApp
                   html += '<li ><a href="#/'+value['link']+'/'+subvalue['link']+'" class="dropdown-item nav-link">'+subvalue['name']+'</a></li>';
                 });
               html += '</ul>';
-            html += '</li>';          }
+            html += '</li>';
+          }
 
           // class="active"
 
@@ -70,15 +81,7 @@ app.obj.angularApp
 
         html += '</ul>';
 
-
-
         element.html(html);
-
-        console.log(html);
-        //element.html(html);
-
-
-      console.log(element);
 
 		};
     return me.def;

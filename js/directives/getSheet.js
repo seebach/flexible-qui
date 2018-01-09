@@ -4,57 +4,37 @@
  * @ngdoc function
  * @name myApp.directive: visualization
  * @description
- * Creating an element rom the Visualization API
- * https://help.qlik.com/en-US/sense-developer/3.0/Subsystems/APIs/Content/VisualizationAPI/VisualizationAPI.htm
- * Available visualization types
- * barchart
- * combochart
- * gauge
- * kpi
- * linechart
- * piechart
- * pivot-table
- * scatterplot
- * table
- * treemap
- * Controller of the myApp
  */
  console.log('getSheet');
 
 app.obj.angularApp
-	.directive('getSheet', function($parse, $sce, $compile, $timeout, api) {
+	.directive('getSheet', function($parse, $sce, $compile, $timeout, api,$routeParams) {
 		var me = {
 			def: {
-				restrict: 'AE',
-        		replace: true,
-                terminal: true
+        restrict: 'AE',
+        transclude: true
+        // restrict: 'AE',
+        // replace: true,
+        // terminal: true
 			}
 		};
 
 		me.boot = function () {
 			// Get all the attributes
 			me.def.scope = {
-				id: '=',
-				sheetGuid:'=',
-				title: '=',
-				type: '=',
-				columns: '=',
-				height: '='
+				sheetGuid:'='
 			};
 
 			me.def.link = function (scope, element, attrs) {
+
+
 				var html = '';
 				var colSize = 100 / 24;
 				var rowSize = 100 / 12;
-				var sheetGuid = '600e9c8f-1f6e-4c4d-864b-9179fd2ef206';
-				//scope.$watch('sheetId',function(newValue,oldValue) {
-					// Inject the template into the DOM
-
-				console.log(element);
 
 					//app.getSheet(sheetGuid).then(function(model){
 					//	console.log(model);
-						app.obj.app.getObject(sheetGuid).then(function(model){
+						app.obj.app.getObject($routeParams.sheetGuid).then(function(model){
 							//this.title = model.properties.title;
 							//console.log(model.layout.cells);
 
@@ -85,11 +65,12 @@ app.obj.angularApp
 									//element.html(html);
 
 								});
-				//});
 			};
+        return me.def;
 
-			return me.def;
-		};
+    };
+
+
 
 		return me.boot();
 	});

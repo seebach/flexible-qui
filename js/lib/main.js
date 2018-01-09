@@ -15,7 +15,6 @@ baseUrl: "https://qs.itellidemo.dk/resources",
   	'domReady': scriptsUrl +'js/vendor/domReady/domReady',
 	'bootstrap': scriptsUrl + 'js/vendor/bootstrap/dist/js/bootstrap.min',
 	'app': scriptsUrl + 'js/lib/app',
-  'route-segment': scriptsUrl + 'js/vendor/angular-route-segment/angular-route-segment.min',
   'ui-bootstrap': scriptsUrl + 'js/vendor/ui-bootstrap/ui-bootstrap-tpls-2.5.0.min',
 //	'ga': scriptsUrl + 'js/lib/ga',
     'controller.main': scriptsUrl + 'js/controllers/main',
@@ -26,7 +25,6 @@ baseUrl: "https://qs.itellidemo.dk/resources",
     'directive.exportToCsv': scriptsUrl + 'js/directives/exportToCsv',
     'directive.visualization': scriptsUrl + 'js/directives/visualization',
     'directive.googleAnnotationChart': scriptsUrl + 'js/directives/googleAnnotationChart',
-    'directive.view-segment': scriptsUrl + 'js/directives/view-segment',
 	'service.api': scriptsUrl + 'js/services/api',
 	'service.utility': scriptsUrl + 'js/services/utilities'
   }
@@ -35,62 +33,45 @@ baseUrl: "https://qs.itellidemo.dk/resources",
 define([
     'require',
     'angular',
-    'app',
-    'route-segment'
+    'app'
 ], function (require, angular) {
     'use strict';
 
     // define( "client.services/grid-service", {} );
 	app.obj.angularApp = angular.module('myApp', [
 		'ngAnimate',
-		'ngRoute',
-    'route-segment',
-    'view-segment'
+		'ngRoute'
 	]);
-/* route segment info >> https://github.com/artch/angular-route-segment  */
-  app.obj.angularApp.config(function ($routeSegmentProvider) {
-    $routeSegmentProvider.
-			when('/',       'default').
-      when('/new',    'new').
-      when('/sheet',  'sheet' ).
-      when('/home',  'home' ).
-      segment('default', {
-        default: true,
-        templateUrl: scriptsUrl+"views/home.html",
-        controller: 'controller.main'} ).
-      segment('new', {
-        templateUrl: scriptsUrl+"views/new.html",
-        controller: 'controller.main'} ).
-        segment('sheet', {
-          templateUrl: scriptsUrl+"views/sheet.html",
-          controller: 'controller.main'} ).
-       segment('home', {
-        templateUrl: scriptsUrl+"views/home.html",
-        controller: 'controller.main'} )
-		//  	.otherwise({redirectTo: '/'})
-	})
-/*
-	app.obj.angularApp.config(function($routeProvider,$locationProvider) {
+
+  app.obj.angularApp.config(function($routeProvider,$locationProvider) {
+
 		$routeProvider
-			.when('/', {
-				templateUrl: scriptsUrl+"views/home.html",
-				controller: 'controller.main'
-			} ).when('/new', {
+        .when('/', {
+          templateUrl: scriptsUrl+"views/home.html",
+          controller: 'controller.main'
+        } ).when('/home', {
+    				templateUrl: scriptsUrl+"views/home.html",
+    				controller: 'controller.main'
+    			} ).when('/value-of-deals', {
           templateUrl: scriptsUrl+"views/new.html",
           controller: 'controller.main'
       } ).when('/sheet', {
           templateUrl: scriptsUrl+"views/sheet.html",
           controller: 'controller.main'
+      } ).when('/sheet/:sheetGuid', {
+          templateUrl: scriptsUrl+"views/sheet.html",
+          controller: 'controller.main'
       } )
 			.otherwise({redirectTo: '/'})
-	})*/
+      //$locationProvider.html5Mode(true);
+
+	})
+
     require([
     	'domReady!',
     	'js/qlik',
     	'angular',
-      'route-segment',
       'ui-bootstrap',
-      'directive.view-segment',
 //        'ga',
     	'controller.main',
     	'service.api',
