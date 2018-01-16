@@ -49,22 +49,23 @@ define([
         .when('/', {
           templateUrl: scriptsUrl+"views/home.html",
           controller: 'controller.main'
-        } ).when('/home', {
+        } ).when('/app/:appid/home', {
     				templateUrl: scriptsUrl+"views/home.html",
     				controller: 'controller.main'
-    			} ).when('/value-of-deals', {
+    			} ).when('/app/:appid/value-of-deals', {
           templateUrl: scriptsUrl+"views/new.html",
           controller: 'controller.main'
-      } ).when('/sheet', {
+/*      } ).when('/app/:appid/sheet', {
           templateUrl: scriptsUrl+"views/sheet.html",
-          controller: 'controller.main'
-      } ).when('/sheet/:sheetGuid', {
+          controller: 'controller.main' */
+      } ).when('/app/:appid/sheet/:sheetGuid', {
           templateUrl: scriptsUrl+"views/sheet.html",
           controller: 'controller.main'
       } )
 			.otherwise({redirectTo: '/'})
       //$locationProvider.html5Mode(true);
 
+      console.log($routeProvider);
 	})
 
     require([

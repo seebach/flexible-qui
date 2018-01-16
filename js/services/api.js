@@ -14,29 +14,30 @@ app.obj.angularApp
 
 	me.getObjects = function (obj) {
 		console.log('getObjects');
+		var appid = app.vars.appid ;
 		var deferred = $q.defer(),
 			promises = [];
-
-		setTimeout(function(){
+//		setTimeout(function(){
 			angular.forEach(obj, function(value, key) {
-				app.obj.app.getObject(value, value).then(function(model){
+				app.obj[appid].getObject(value, value).then(function(model){
 					app.obj.model.push(model);
 					deferred.resolve(value);
 				});
 				promises.push(deferred.promise);
 			});
-		}, 500);
+//		}, 500);
 		return $q.all(promises);
 	};
 
 	me.getSheet = function (id) {
 		console.log('getSheet');
+		var appid = app.vars.appid ;
 		var deferred = $q.defer(),
 			promises = [];
 
 		setTimeout(function(){
 			// app.getObject(sheetGuid).then(function(model) {
-				app.obj.app.getObject(id).then(function(model){
+				app.obj[appid].getObject(id).then(function(model){
 					//console.log(model);
 					app.obj.model.push(model);
 					//app.obj.model.push(model);
@@ -50,6 +51,7 @@ app.obj.angularApp
 
 	me.destroyObjects = function () {
 		console.log('destroyObjects');
+		var appid = app.vars.appid ;
 		var deferred = $q.defer();
 		var promises = [];
 		if (app.obj.model.length >= 1) {
@@ -79,7 +81,8 @@ app.obj.angularApp
 	};
 	// To get generic Hypercubes
 	me.getHyperCube = function (dimensions, measures, callback, limit) {
-		console.log('getHyperCube');				
+		console.log('getHyperCube');
+		var appid = app.vars.appid ;
 		var qDimensions = [],
 			qMeasures = [];
 		if (dimensions.length) {
@@ -102,7 +105,7 @@ app.obj.angularApp
 				});
 			});
 		}
-		app.obj.app.createCube({
+		app.obj[appid].createCube({
 			qDimensions : qDimensions,
 			qMeasures : qMeasures,
 			qInitialDataFetch : [{
@@ -121,6 +124,8 @@ app.obj.angularApp
 	me.getHyperCubeQ = function (dimensions, measures) {
 		var qDimensions = [],
 			qMeasures = [];
+		var appid = app.vars.appid ;
+
 		if (dimensions.length) {
 			angular.forEach(dimensions, function(value, key) {
 				qDimensions.push({
@@ -152,7 +157,7 @@ app.obj.angularApp
 			});
 		}
 		var deferred = $q.defer();
-		app.obj.app.createCube({
+		app.obj[appid].createCube({
 			qDimensions : qDimensions,
 			qMeasures : qMeasures,
 			qInitialDataFetch : [{
@@ -170,13 +175,15 @@ app.obj.angularApp
 	};
 
 	me.getTable = function(dimensions, measures, options) {
-		return app.obj.app.createTable(dimensions, measures, options);
+		var appid = app.vars.appid ;
+		return app.obj[appid].createTable(dimensions, measures, options);
 	}
 
 	// To get list of data
 	me.createList = function (field, callback, limit) {
 		console.log(field);
-		app.obj.app.createList({
+		var appid = app.vars.appid ;
+		app.obj[appid].createList({
 			qDef: {
 				qFieldDefs: field
 			},

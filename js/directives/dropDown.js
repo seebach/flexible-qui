@@ -28,6 +28,8 @@ app.obj.angularApp
             };
 
             me.def.link = function(scope, element, attrs) {
+              var appid = app.vars.appid ;
+
                 scope.items = {};
                 scope.currentItem = {
                     qText: scope.title
@@ -41,7 +43,7 @@ app.obj.angularApp
                     })
                 });
                 scope.dropDownChangeTitle = function (obj) {
-                    app.obj.app.field(scope.dimension).select([obj.qElemNumber], false, false)
+                    app.obj[appid].field(scope.dimension).select([obj.qElemNumber], false, false)
                     scope.title = obj.qText;
                     scope.currentItem = obj;
                 }

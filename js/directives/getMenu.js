@@ -23,7 +23,6 @@ app.obj.angularApp
 		me.boot = function () {
 			// Get all the attributes
 			me.def.scope = {
-			     id: '='
 			};
       console.log('getMenu2');
 
@@ -31,19 +30,21 @@ app.obj.angularApp
 			me.def.link = function (scope, element, attrs) {
 
         var menuitems = [
-  		    {name:'Home',link:'home',submenu:'no'},
-  		    {name:'Opportunity',link:'sheet',
+  		    {name:'Home',link:'home',submenu:'no',app:'sales'},
+  		    {name:'Opportunity',link:'sheet',app:'sales',
             submenu:
             [
-            {name:'Dashboard',link:'FfQzt'},
-            {name:'Trend',link:'dWbmmp'},
-            {name:'Pipeline',link:'600e9c8f-1f6e-4c4d-864b-9179fd2ef206'},
+            {name:'Dashboard',link:'sheet/FfQzt',app:'sales'},
+            {name:'Trend',link:'sheet/dWbmmp',app:'sales'},
+            {name:'Pipeline',link:'sheet/600e9c8f-1f6e-4c4d-864b-9179fd2ef206',app:'sales'},
 
-            {name:'Propability',link:'793828b2-5355-4627-ab79-921e0adcaa14'},
-            {name:'Details',link:'sjUEcN'}
+            {name:'Propability',link:'sheet/793828b2-5355-4627-ab79-921e0adcaa14',app:'sales'},
+            {name:'Details',link:'sheet/sjUEcN',app:'sales'}
           ]
         },
-  		    {name:'Value of Deals',link:'value-of-deals',submenu:'no'}
+  		    {name:'Value of Deals',link:'value-of-deals',submenu:'no',app:'sales'},
+          {name:'Different App',link:'sheet/1ff88551-9c4d-41e0-b790-37f4c11d3df8',submenu:'no',app:'executive'},
+          {name:'Propability 2',link:'sheet/793828b2-5355-4627-ab79-921e0adcaa14',submenu:'no',app:'sales'},
   		  ];
 
         var html = '';
@@ -60,24 +61,29 @@ app.obj.angularApp
         html += '<ul class="nav nav-tabs">';
 
         menuitems.forEach(function(value, key) {
-          if (value['submenu']==='no') {
-            html += '<li class="nav-item" ng-class="{active: $routeSegment.startsWith(\''+value['link']+'\')}" ><a href="#/'+value['link']+'" class"nav-link" role="tab">'+value['name']+'</a></li>';
-          } else {
-            html += '<li class="nav-item dropdown">';
-              html += '<a class="dropdown-toggle nav-link" data-toggle="dropdown" role="tab" href="#/'+value['link']+'">'+value['name']+' <span class="caret"></span></a>';
-              html += '<ul class="dropdown-menu">';
-                value['submenu'].forEach(function(subvalue, subkey) {
-                  html += '<li ><a href="#/'+value['link']+'/'+subvalue['link']+'" class="dropdown-item nav-link">'+subvalue['name']+'</a></li>';
-                });
-              html += '</ul>';
-            html += '</li>';
-          }
+           var href = '#/app/'+value['app']+'/'+value['link'];
+           var path = '/app/'+value['app']+'/'+value['link'];
+           if (value['submenu']==='no') {
+             // ng-class="{active: activetab=='/lab'}"
 
-          // class="active"
+//             html += '<li class="nav-item" ng-class="{active:isActive(\''+path+'\')}" ><a href="'+href+'" class"nav-link" role="tab">'+value['name']+'</a></li>';
+//          html += '<li class="nav-item" ng-class="{active: activetab==\''+path+'\'}" ><a href="'+href+'" class"nav-link" role="tab">'+value['name']+'</a></li>';
+             html += '<li class="nav-item" active-tab="2" ><a href="'+href+'" class"nav-link" role="tab">'+value['name']+'</a></li>';
+           } else {
+             html += '<li class="nav-item dropdown">';
+               html += '<a class="dropdown-toggle nav-link" data-toggle="dropdown" role="tab" href="#/'+value['link']+'">'+value['name']+' <span class="caret"></span></a>';
+               html += '<ul class="dropdown-menu">';
+                 value['submenu'].forEach(function(subvalue, subkey) {
+                   var subhref = '#/app/'+subvalue['app']+'/'+subvalue['link'];
+                   html += '<li ><a href="'+subhref+'" class="dropdown-item nav-link">'+subvalue['name']+'</a></li>';
+                 });
+               html += '</ul>';
+             html += '</li>';
+           }
 
-        //  <li><a href="#">Menu 2</a></li>
-        //  <li><a href="#">Menu 3</a></li>
-        });
+           // class="active"
+
+         });
 
         html += '</ul>';
 

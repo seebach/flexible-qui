@@ -15,36 +15,31 @@ var me = {
 	}
 };
 
-me.init = function () {
-	me.config = {
-		host: 'localhost',
-		prefix: "/",
-		port: 4848, // 443 for Sense Server
-		id: 'Helpdesk Management.qvf'
-	};
-	me.vars = {};
-}
-
 me.initRemote = function () {
-	me.config = {
-		host: 'qs.itellidemo.dk',
-		prefix: "/",
-		port: 443, // 443 for Sense Server
-		id: '1d130b61-aee2-4529-ba59-e312527a3486'
-	};
-	me.vars = {};
+me.config = {
+host: 'qs.itellidemo.dk',
+prefix: "/",
+port: 443, // 443 for Sense Server
+// add appname and id to which we should connect
+// app name must be in url and object name Compatible format
+ids: [{'name':'sales' ,'id':'1d130b61-aee2-4529-ba59-e312527a3486'},
+    {'name':'executive' ,'id':'f10e1e83-2c57-48b8-8952-0d6501fdc4dc'}]
+};
+me.vars = {};
 }
 
 me.boot = function () {
-//	me.init();
-	me.initRemote();
-	me.obj.app = me.obj.qlik.openApp(me.config.id, me.config);
+//  me.init();
+  me.initRemote();
 
-  me.obj.app.getObjectProperties('eb466c8a-90f5-4ce6-aa6e-b31f87f71ca9').then(function(model){
-  	console.log(model.properties.title);
+  me.config.ids.forEach(function(value, key) {
+    var appname = value['name'];
+    me.obj[appname] = me.obj.qlik.openApp(value['id'], me.config);
+  //  me.apps[appname] = me.obj.qlik.openApp(value['id'], me.config);
+    console.log('load: '+value['name']+' id: '+value['id']);
   });
+  console.log('%c App ' + me.v + ': ', 'color: red', 'Loaded!');
 
-	console.log('%c App ' + me.v + ': ', 'color: red', 'Loaded!');
 };
 
 app = me;

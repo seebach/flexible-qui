@@ -26,17 +26,16 @@ app.obj.angularApp
 			};
 
 			me.def.link = function (scope, element, attrs) {
-
+        console.log($routeParams);
+        var appid = app.vars.appid ;
+        var sheetGuid = app.vars.sheetGuid;
 
 				var html = '';
 				var colSize = 100 / 24;
 				var rowSize = 100 / 12;
 
-					//app.getSheet(sheetGuid).then(function(model){
-					//	console.log(model);
-						app.obj.app.getObject($routeParams.sheetGuid).then(function(model){
+						app.obj[appid].getObject(sheetGuid).then(function(model){
 							//this.title = model.properties.title;
-							//console.log(model.layout.cells);
 
 						element.html('<div id="sheet-wrapper" style="min-height:100vh;position: relative;" />');
 						model.layout.cells.map(function(d) {
@@ -56,14 +55,9 @@ app.obj.angularApp
 										height: 'calc(' + d.height + '%)',
 										position: 'absolute'
 									}).appendTo('#sheet-wrapper');
-										//app.obj.app	.getObject('#sheet-' + d.id, d.id);
-												app.obj.app	.getObject('sheet-' + d.id, d.id);
-												console.log('getSheet object success');
-
+												app.obj[appid].getObject('sheet-' + d.id, d.id);
 									})
-									//console.log(html);
 									//element.html(html);
-
 								});
 			};
         return me.def;
