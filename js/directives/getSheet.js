@@ -8,7 +8,7 @@
  console.log('getSheet');
 
 app.obj.angularApp
-	.directive('getSheet', function($parse, $sce, $compile, $timeout, api,$routeParams) {
+	.directive('getSheet', function($parse, $sce, $compile, $timeout, api) {
 		var me = {
 			def: {
         restrict: 'AE',
@@ -26,7 +26,7 @@ app.obj.angularApp
 			};
 
 			me.def.link = function (scope, element, attrs) {
-        console.log($routeParams);
+
         var appid = app.vars.appid ;
         var sheetGuid = app.vars.sheetGuid;
 
@@ -34,7 +34,7 @@ app.obj.angularApp
 				var colSize = 100 / 24;
 				var rowSize = 100 / 12;
 
-						app.obj[appid].getObject(sheetGuid).then(function(model){
+						app.obj.apps[appid].getObject(sheetGuid).then(function(model){
 							//this.title = model.properties.title;
 
 						element.html('<div id="sheet-wrapper" style="min-height:100vh;position: relative;" />');
@@ -55,7 +55,7 @@ app.obj.angularApp
 										height: 'calc(' + d.height + '%)',
 										position: 'absolute'
 									}).appendTo('#sheet-wrapper');
-												app.obj[appid].getObject('sheet-' + d.id, d.id);
+												app.obj.apps[appid].getObject('sheet-' + d.id, d.id);
 									})
 									//element.html(html);
 								});

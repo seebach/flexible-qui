@@ -8,6 +8,8 @@
  * # controller.dashboard
  * Controller of the myApp
  */
+ console.log('main');
+
 app.obj.angularApp
 	.controller('controller.main', function ($scope, $rootScope,$location, $injector,$routeParams, api, utility) {
 		var me = {};
@@ -15,22 +17,16 @@ app.obj.angularApp
 		$scope.isActive = function(route) {
         return route === $location.path();
     }
-		var path = function() { return $location.path();};
-    $rootScope.$watch(path, function(newVal, oldVal){
-      $rootScope.activetab = newVal;
-    });
-				
-				console.log($scope);
 		// set default for which app we are using
 		app.vars.appid  = $routeParams.appid;
 		if (app.vars.appid.length<2) { console.log('no app selected'); return; }
 
 		app.vars.sheetGuid  = $routeParams.sheetGuid;
 
-		console.log(app.vars);
-
 		me.init = function () {
 			me.measures = [];
+			// CurrentSelections
+			console.log(app.obj.apps[app.vars.appid].selectionState( ));
 			//	["Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )", false]
 			//$scope.kapi = [];
 			//me.objects = ['ycppXj'];
@@ -38,14 +34,12 @@ app.obj.angularApp
 
 		me.boot = function () {
 			me.init();
-
 			me.events();
-
 			me.createKpis();
 			// me.getObjects();
 
 			// For debugging selections uncommment the line below
-			app.obj[app.vars.appid].getObject('CurrentSelections', 'CurrentSelections');
+			app.obj.apps[app.vars.appid].getObject('CurrentSelections', 'CurrentSelections');
 			utility.log('Page loaded: ', $scope.page);
 		};
 
@@ -59,7 +53,7 @@ app.obj.angularApp
 				});
 			}
 			$rootScope.clearAll = function () {
-				app.obj.app.clearAll();
+				app.obj.apps[app.vars.appid].clearAll();
 			}
 			$rootScope.goTo = function(page) {
 				api.destroyObjects().then(function(){

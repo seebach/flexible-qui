@@ -43,7 +43,7 @@ app.obj.angularApp
                     })
                 });
                 scope.dropDownChangeTitle = function (obj) {
-                    app.obj[appid].field(scope.dimension).select([obj.qElemNumber], false, false)
+                    app.obj.apps[appid].field(scope.dimension).select([obj.qElemNumber], false, false)
                     scope.title = obj.qText;
                     scope.currentItem = obj;
                 }

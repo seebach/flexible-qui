@@ -34,7 +34,7 @@ app.obj.angularApp
 						var html = '<div class="qvobject" id="' + scope.id + '" style="height: ' + scope.height + 'px;"></div>';
 						element.html(html);
 						$timeout(function(){
-							app.obj[appid].getObject(scope.id, newValue, {noInteraction: noInteraction}).then(function(model){
+							app.obj.apps[appid].getObject(scope.id, newValue, {noInteraction: noInteraction}).then(function(model){
 								app.obj.getObjectModel.push(model);
 							});
 						}, 500);
@@ -44,7 +44,7 @@ app.obj.angularApp
 						}, 400, function() {
 							var html = '<div class="qvobject" id="' + scope.id + '" style="height: ' + scope.height + 'px;"></div>';
 							element.html(html);
-							app.obj[appid].getObject(scope.id, newValue, {noInteraction: noInteraction}).then(function(model){
+							app.obj.apps[appid].getObject(scope.id, newValue, {noInteraction: noInteraction}).then(function(model){
 								app.obj.getObjectModel.push(model);
 								$( "#" + scope.id ).animate({opacity: 1}, 400);
 							});

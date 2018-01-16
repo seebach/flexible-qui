@@ -11,7 +11,8 @@ var me = {
 		app: null,
 		angularApp: null,
 		model: [],
-		getObjectModel: []
+		getObjectModel: [],
+    apps:[]
 	}
 };
 
@@ -34,7 +35,7 @@ me.boot = function () {
 
   me.config.ids.forEach(function(value, key) {
     var appname = value['name'];
-    me.obj[appname] = me.obj.qlik.openApp(value['id'], me.config);
+    me.obj.apps[appname] = me.obj.qlik.openApp(value['id'], me.config);
   //  me.apps[appname] = me.obj.qlik.openApp(value['id'], me.config);
     console.log('load: '+value['name']+' id: '+value['id']);
   });
