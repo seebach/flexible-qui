@@ -18,18 +18,42 @@ app.obj.angularApp
         return route === $location.path();
     }
 		// set default for which app we are using
-		app.vars.appid  = $routeParams.appid;
+		app.vars.prevAppid = app.vars.appid;
+		app.vars.appid = $routeParams.appid;
+
 		if (app.vars.appid.length<2) { console.log('no app selected'); return; }
 
 		app.vars.sheetGuid  = $routeParams.sheetGuid;
 
+		// align selections
+		/*
+		if(app.vars.prevAppid!=app.vars.appid ) {
+		// if we change app, the check selections to align
+		var selectionFields = [];
+			// find fields to align
+			for (var eachapp in app.obj.apps) {
+				console.log(app.obj.apps[eachapp].selectionState( ).selections); // we need to access this array???
+				for (var selection in app.obj.apps[eachapp].selectionState( ).selections) {
+					console.log(app.obj.apps[eachapp].selectionState( ).selections[0]);
+					switch (app.obj.apps[eachapp].selectionState( ).selections.fieldName[selection]) {
+					    case 'Opportunity Close Quarter 2':
+					    case 'Quarter':
+					       selectionFields.push(app.obj.apps[eachapp].selectionState( ).selections.fieldName);
+								 console.log(app.obj.apps[eachapp].selectionState( ).selections.fieldName);
+
+					}
+				}
+				// selectionFields = app.obj.apps[eachapp].selectionState( ).selections.fieldName;
+
+			}
+			console.log(selectionFields);
+
+		}
+*/
 		me.init = function () {
 			me.measures = [];
-			// CurrentSelections
-			console.log(app.obj.apps[app.vars.appid].selectionState( ));
-			//	["Count( {$<Priority={'High'}, Status -={'Closed'} >} Distinct %CaseId )", false]
-			//$scope.kapi = [];
-			//me.objects = ['ycppXj'];
+
+
 		}
 
 		me.boot = function () {
@@ -37,6 +61,7 @@ app.obj.angularApp
 			me.events();
 			me.createKpis();
 			// me.getObjects();
+			// CurrentSelections
 
 			// For debugging selections uncommment the line below
 			app.obj.apps[app.vars.appid].getObject('CurrentSelections', 'CurrentSelections');
